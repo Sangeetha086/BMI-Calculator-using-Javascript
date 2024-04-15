@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://media.istockphoto.com/id/1084416182/vector/sky-and-clouds-background-sky-and-cloud-with-blue-color-cartoon-cloudy-background-vector.jpg?s=612x612&w=0&k=20&c=2VDrTkMPDrOa6_CVFVqhnmLrspT91hqWbkfuEkqJnjM=');
+            background-color:#0056b3;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .calc {
+            margin-top: 20px;
+        }
+        .calc p {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .calc input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calc button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .calc button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <div class="calc">
+            <p>Height (in cm)</p>
+            <input type="text" id="height" />
+            <p>Weight (in kg)</p>
+            <input type="text" id="weight" />
+            <button id="btn" onclick="calculate()">Calculate</button>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            let height = parseInt(document.getElementById("height").value);
+            let weight = parseInt(document.getElementById("weight").value);
+            let result = document.getElementById("result");
+            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+                result.innerHTML = "Please enter valid height and weight.";
+            } else {
+                let bmi = (weight / ((height * height) / 10000)).toFixed(2);
+                if (bmi < 18.5)
+                    result.innerHTML = "Underweight: " + bmi;
+                else if (bmi >= 18.5 && bmi < 24.9)
+                    result.innerHTML = "Normal weight: " + bmi;
+                else if (bmi >= 24.9 && bmi < 30)
+                    result.innerHTML = "Overweight: " + bmi;
+                else
+                    result.innerHTML = "Obese: " + bmi;
+            }
+        }
+    </script>
+</body>
+</html>
